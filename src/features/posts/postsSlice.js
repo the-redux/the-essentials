@@ -16,6 +16,8 @@ const postsSlice = createSlice({
   }
 });
 
+// export const selectorPost = (id) => (state) => state.filter(post => post.id === id);
+
 export const { postAdded } = postsSlice.actions;
 
 export default postsSlice.reducer;

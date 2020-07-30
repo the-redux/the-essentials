@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
 
 import { Navbar } from './app/Navbar';
@@ -22,9 +23,8 @@ function App() {
               <PostsList/>
             </React.Fragment>
           </Route>
-          <Route exact path="/posts/:id">
-            <SinglePostPage />
-          </Route>
+          <Route exact path="/posts/:postId" component={SinglePostPage} />
+          <Redirect to="/" />
         </Switch>
       </div>
     </Router>
