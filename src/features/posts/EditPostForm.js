@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { postUpdated } from './postsSlice';
 
@@ -14,6 +14,7 @@ export const EditPostForm = () => {
   const [content, setContent] = useState(post.content);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onClicked = () => {
     if (title && content) {
@@ -24,6 +25,7 @@ export const EditPostForm = () => {
           content,
         })
       );
+      history.push(`/posts/${postId}`);
     }
   };
 
