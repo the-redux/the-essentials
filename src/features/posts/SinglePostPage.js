@@ -9,7 +9,7 @@ export const SinglePostPage = () => {
   );
 
   if (!post) {
-    return <section>Not Found</section>;
+    return (<section>Not Found</section>);
   }
 
   return (
