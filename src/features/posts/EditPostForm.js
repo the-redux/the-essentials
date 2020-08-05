@@ -49,4 +49,4 @@ export const EditPostForm = () => {
       </form>
     </section>
   );
-}
+};
