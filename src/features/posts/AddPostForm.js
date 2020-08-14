@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postAdded } from './postsSlice';
+// import { postAdded } from './postsSlice';
+import { exampleThunkFunciton } from './postsSlice';
 
 export const AddPostForm = () => {
   const [title, setTitle] = useState('');
@@ -13,7 +14,8 @@ export const AddPostForm = () => {
 
   const onClicked = () => {
     if (title && content && userId) {
-      dispatch(postAdded(title, content, userId));
+      // dispatch(postAdded(title, content, userId));
+      dispatch(exampleThunkFunciton(title, content, userId));
       setTitle('');
       setContent('');
     }
