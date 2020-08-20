@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
-// import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import { PostAuthor } from './PostAuthor';
-// import { TimeAgo } from './TimeAgo';
-// import { ReactionButtons } from './ReactionButtons';
 import { PostExcerpt } from './PostExcerpt';
-
 import { selectAllPosts, fetchPosts } from './postsSlice';
 
 export const PostsList = () => {
