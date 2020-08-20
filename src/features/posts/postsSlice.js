@@ -37,6 +37,11 @@ const initialState = {
   error: null,
 };
 
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  const response = await client.get('/fakeApi/posts');
+  return response.posts;
+});
+
 
 const postsSlice = createSlice({
   name: 'posts',
@@ -80,7 +85,21 @@ const postsSlice = createSlice({
         existingPost.reactions[reaction]++;
       }
     },
-  }
+
+  },
+  extraReducers: {
+    [fetchPosts.pending]: (state, action) => {
+      state.status = 'loading';
+    },
+    [fetchPosts.fulfilled]: (state, action) => {
+      state.status = 'succeeded';
+      state.posts = state.posts.concat(action.payload);
+    },
+    [fetchPosts.rejected]: (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    },
+  },
 });
 
 export const { postAdded, postUpdated, reactionAdded } = postsSlice.actions;
@@ -99,7 +118,4 @@ export const exampleThunkFunciton = (title, content, userId) => (dispatch, getSt
   console.log('after: ', stateAfter.posts.length);
 };
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const response = await client.get('/fakeApi/posts');
-  return response.posts;
-});
+
