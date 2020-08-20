@@ -1,36 +1,37 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { sub } from 'date-fns';
+import { createSlice, createAsyncThunk, nanoid } from '@reduxjs/toolkit';
+// import { sub } from 'date-fns';
+import { client } from '../../api/client';
 
 const initialState = {
   posts: [
-    {
-      id: '1',
-      title: 'First Post!',
-      content: 'Hello!',
-      user: '0',
-      date: sub(new Date(), { minutes: 10 }).toISOString(),
-      reactions: {
-        thumbsUp: 0,
-        hooray: 0,
-        heart: 0,
-        rocket: 0,
-        eyes: 0,
-      },
-    },
-    {
-      id: '2',
-      title: 'Second Post',
-      content: 'More text',
-      user: '2',
-      date: sub(new Date(), { minutes: 5 }).toISOString(),
-      reactions: {
-        thumbsUp: 0,
-        hooray: 0,
-        heart: 0,
-        rocket: 0,
-        eyes: 0,
-      },
-    },
+    // {
+    //   id: '1',
+    //   title: 'First Post!',
+    //   content: 'Hello!',
+    //   user: '0',
+    //   date: sub(new Date(), { minutes: 10 }).toISOString(),
+    //   reactions: {
+    //     thumbsUp: 0,
+    //     hooray: 0,
+    //     heart: 0,
+    //     rocket: 0,
+    //     eyes: 0,
+    //   },
+    // },
+    // {
+    //   id: '2',
+    //   title: 'Second Post',
+    //   content: 'More text',
+    //   user: '2',
+    //   date: sub(new Date(), { minutes: 5 }).toISOString(),
+    //   reactions: {
+    //     thumbsUp: 0,
+    //     hooray: 0,
+    //     heart: 0,
+    //     rocket: 0,
+    //     eyes: 0,
+    //   },
+    // },
   ],
   status: 'idle',
   error: null,
@@ -97,3 +98,8 @@ export const exampleThunkFunciton = (title, content, userId) => (dispatch, getSt
   const stateAfter = getState();
   console.log('after: ', stateAfter.posts.length);
 };
+
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  const response = await client.get('/fakeApi/posts');
+  return response.posts;
+});
