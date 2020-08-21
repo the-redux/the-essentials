@@ -18,7 +18,7 @@ export const AddPostForm = () => {
   const onSavePostClicked = async () => {
     if (canSave) {
       try {
-        setAddReqeustStatus('pending')
+        setAddReqeustStatus('pending');
         const resultAction = await dispatch(
           addNewPost({ title, content, user: userId })
         );
